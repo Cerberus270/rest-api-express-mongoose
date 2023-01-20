@@ -4,7 +4,6 @@ import { Request, Response } from 'express';
 // Create a new Product
 const createProduct = async (req: Request, res: Response) => {
     let payload = req.body;
-    
     try {
         const productCreate = await new Product(payload).save();
         return res.status(201).json({
@@ -44,7 +43,6 @@ const getAllProducts = async (req: Request, res: Response) => {
 const getProductDetails = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
-        console.log(id);
         const productInfo = await Product.findOne({ _id: id }).select(['-createdAt', '-updatedAt']);
         return res.status(200).json({
             code: 200,

@@ -7,5 +7,4 @@ export interface IProduct {
     salePrice: number
     saleGain: number
     status: boolean,
-    productImage?: string
 }

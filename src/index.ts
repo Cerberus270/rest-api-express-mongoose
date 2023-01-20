@@ -1,9 +1,8 @@
-import express, { Express, NextFunction, Request, Response } from 'express';
+import express, { Express, Request, Response } from 'express';
 import { PORT, DB_URL } from './config/config';
-import mongoose, { Connection, ConnectOptions, mongo } from 'mongoose';
+import mongoose, { Connection, ConnectOptions } from 'mongoose';
 import router from './routes/productRoutes';
 import bodyParser from 'body-parser';
-import multer from 'multer';
 
 
 const app: Express = express();
@@ -22,6 +21,9 @@ db.once('open', () => {
   console.log(`DB Connected to ${db.name}`);
 })
 
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 
 app.use("/api", router);
