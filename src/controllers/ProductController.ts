@@ -12,8 +12,8 @@ const createProduct = async (req: Request, res: Response) => {
             data: productCreate
         });
     } catch (error: any) {
-        res.status(501).json({
-            code: 501,
+        res.status(400).json({
+            code: 400,
             message: error.message,
             error: true,
         });
@@ -32,8 +32,8 @@ const getAllProducts = async (req: Request, res: Response) => {
         })
 
     } catch (error: any) {
-        res.status(501).json({
-            code: 501,
+        res.status(400).json({
+            code: 400,
             message: error.message,
             error: true
         })
@@ -50,8 +50,8 @@ const getProductDetails = async (req: Request, res: Response) => {
             data: productInfo
         })
     } catch (error: any) {
-        res.status(501).json({
-            code: 501,
+        res.status(400).json({
+            code: 400,
             message: error.message,
             error: true
         })
@@ -72,8 +72,8 @@ const updateProduct = async (req: Request, res: Response) => {
             data: updatedProduct
         })
     } catch (error: any) {
-        res.status(501).json({
-            code: 501,
+        res.status(400).json({
+            code: 400,
             message: error.message,
             error: true,
         });
@@ -94,8 +94,8 @@ const deleteProduct = async (req: Request, res: Response) => {
             data: deletedProduct
         })
     } catch (error: any) {
-        res.status(501).json({
-            code: 501,
+        res.status(400).json({
+            code: 400,
             message: error.message,
             error: true,
         });
