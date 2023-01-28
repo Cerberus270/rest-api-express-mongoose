@@ -3,6 +3,7 @@ import { PORT, DB_URL } from './config/config';
 import mongoose, { Connection, ConnectOptions } from 'mongoose';
 import router from './routes/productRoutes';
 import bodyParser from 'body-parser';
+import cors from "cors";
 
 
 const app: Express = express();
@@ -20,6 +21,8 @@ db.on('error', console.error.bind(console, 'Connection Error'));
 db.once('open', () => {
   console.log(`DB Connected to ${db.name}`);
 })
+
+app.use(cors());
 
 app.use(bodyParser.urlencoded({
   extended: true
