@@ -68,7 +68,7 @@ const updateProduct = async (req: Request, res: Response) => {
         const updatedProduct = await Product.findOneAndUpdate({ _id: id }, reqBody);
         return res.status(200).json({
             code: 200,
-            message: "Product Info",
+            message: "Producto Actualizado Correctamente",
             data: updatedProduct
         })
     } catch (error: any) {
@@ -90,7 +90,7 @@ const deleteProduct = async (req: Request, res: Response) => {
         const deletedProduct = await Product.findByIdAndDelete({ _id: id });
         return res.status(200).json({
             code: 200,
-            message: "Product Info",
+            message: "Producto Eliminado Correctamente",
             data: deletedProduct
         })
     } catch (error: any) {
