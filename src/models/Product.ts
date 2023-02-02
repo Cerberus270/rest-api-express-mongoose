@@ -39,8 +39,16 @@ const DataSchema = new Schema<IProduct>({
 }, { timestamps: true, versionKey: false });
 
 DataSchema.pre('save', function () {
-    this.saleGain = this.salePrice - this.purchasePrice;
-})
+    let value: string = (this.salePrice - this.purchasePrice).toFixed(2);
+    this.saleGain = Number(value) >= 0 ? Number(value) : 0;
+});
+
+DataSchema.post('findOneAndUpdate', async function (next) {
+    const docToUpdate = await this.model.findOne(this.getQuery());
+    let value: string = (docToUpdate.salePrice - docToUpdate.purchasePrice).toFixed(2);
+    docToUpdate.saleGain = Number(value) >= 0 ? Number(value) : 0;
+    await docToUpdate.save();
+});
 
 const Product = mongoose.model<IProduct>('Product', DataSchema, 'products');
 
