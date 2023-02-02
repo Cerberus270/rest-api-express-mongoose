@@ -30,13 +30,17 @@ const DataSchema = new Schema<IProduct>({
     },
     saleGain: {
         type: Number,
-        required: [true, 'Ingrese el precio de venta del producto']
+        required: false
     },
     status: {
         type: Boolean,
         required: [true, 'Ingrese el estado del producto']
     }
 }, { timestamps: true, versionKey: false });
+
+DataSchema.pre('save', function () {
+    this.saleGain = this.salePrice - this.purchasePrice;
+})
 
 const Product = mongoose.model<IProduct>('Product', DataSchema, 'products');
 

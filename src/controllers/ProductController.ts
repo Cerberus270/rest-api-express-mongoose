@@ -8,7 +8,7 @@ const createProduct = async (req: Request, res: Response) => {
         const productCreate = await new Product(payload).save();
         return res.status(201).json({
             code: 201,
-            message: 'Producto creado correctamente',
+            message: `Producto creado correctamente ${productCreate.model}`,
             data: productCreate
         });
     } catch (error: any) {
@@ -68,7 +68,7 @@ const updateProduct = async (req: Request, res: Response) => {
         const updatedProduct = await Product.findOneAndUpdate({ _id: id }, reqBody);
         return res.status(200).json({
             code: 200,
-            message: "Producto Actualizado Correctamente",
+            message: `Producto actualizado correctamente ${updatedProduct?.model}`,
             data: updatedProduct
         })
     } catch (error: any) {
@@ -90,7 +90,7 @@ const deleteProduct = async (req: Request, res: Response) => {
         const deletedProduct = await Product.findByIdAndDelete({ _id: id });
         return res.status(200).json({
             code: 200,
-            message: "Producto Eliminado Correctamente",
+            message: `Producto Eliminado Correctamente ${deletedProduct?.model}`,
             data: deletedProduct
         })
     } catch (error: any) {
